@@ -5,12 +5,26 @@ namespace Domain.Accounts
     public class Account
     {
         private Balance balance;
-        private AccountId id;
+        private AccountHolder holder;
 
-        public Account(AccountId id, Balance balance)
+        public Account(AccountId id, AccountHolder holder)
         {
             Id = id;
+            Holder = holder;
+            Balance = Balance.CreateEmpty();
+        }
+
+        public Account(AccountId id, AccountHolder holder, Balance balance)
+        {
+            Id = id;
+            Holder = holder;
             Balance = balance;
+        }
+
+        public AccountHolder Holder
+        {
+            get => holder;
+            private set => holder = value ?? throw new ArgumentNullException(nameof(value), "Cannot be null");
         }
 
         public Balance Balance
@@ -19,11 +33,7 @@ namespace Domain.Accounts
             private set => balance = value ?? throw new ArgumentNullException(nameof(value), "Cannot be null");
         }
 
-        public AccountId Id
-        {
-            get => id;
-            private set => id = value ?? throw new ArgumentNullException(nameof(value), "Cannot be null");
-        }
+        public AccountId Id { get; }
 
         public void Credit(Funds funds)
         {

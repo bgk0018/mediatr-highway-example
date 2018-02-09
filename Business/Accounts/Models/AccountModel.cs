@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Business.Accounts.Models
+﻿namespace Business.Accounts.Models
 {
     public class AccountModel
     {
@@ -11,5 +7,9 @@ namespace Business.Accounts.Models
         public string Currency { get; set; }
 
         public int AccountId { get; set; }
+
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
     }
 }

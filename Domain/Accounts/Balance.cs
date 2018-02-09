@@ -23,5 +23,10 @@
         {
             Amount -= funds.Amount;
         }
+
+        public static Balance CreateEmpty()
+        {
+            return new Balance(Currency.None, 0);
+        }
     }
 }

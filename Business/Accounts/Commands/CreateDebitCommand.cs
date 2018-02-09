@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Business.Accounts.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Business.Accounts.Models
+namespace Business.Accounts.Commands
 {
     public class CreateDebitCommand : IRequest<TransactionModel>
     {

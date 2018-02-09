@@ -11,7 +11,7 @@ namespace Persistence.Accounts.Queries
         {
             if (id == null) throw new ArgumentNullException(nameof(id));
 
-            ContextQuery = context => context.AsQueryable<Account>().FirstOrDefault(p => p.Id.Value == id.Value);
+            ContextQuery = context => context.AsQueryable<Account>().FirstOrDefault(p => p.Id == id);
         }
     }
 }

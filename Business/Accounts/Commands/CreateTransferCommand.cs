@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Business.Accounts.Models;
 using MediatR;
 
-namespace Business.Accounts.Models
+namespace Business.Accounts.Commands.CreateTransfer
 {
     public class CreateTransferCommand : IRequest<TransactionModel>
     {

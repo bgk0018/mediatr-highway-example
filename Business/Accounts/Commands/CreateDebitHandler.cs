@@ -30,8 +30,7 @@ namespace Business.Accounts.Commands
 
             if (account.Balance.IsNegative) throw new BadRequestException("Insufficent Funds");
 
-            repo.Context.Update(account);
-            await repo.Context.CommitAsync();
+            await repo.UnitOfWork.CommitAsync();
 
             return new TransactionModel();
         }

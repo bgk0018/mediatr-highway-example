@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using Business.Accounts.Models;
-using Business.Exceptions;
 using Domain.Accounts;
 using Highway.Data;
 using MediatR;
@@ -24,12 +23,10 @@ namespace Business.Accounts.Commands
 
             var account = await repo.FindAsync(new GetById(accountId));
 
-            if (account == null) throw new BadRequestException("Account not found");
-
             account.Credit(funds);
 
-            repo.Context.Update(account);
-            await repo.Context.CommitAsync();
+            //Is the account retrieved tracked somehow from beta?
+            await repo.UnitOfWork.CommitAsync();
 
             return new TransactionModel();
         }

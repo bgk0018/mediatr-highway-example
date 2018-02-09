@@ -5,12 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Highway.Data" Version="6.0.6" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="7.4.0" />
+    <PackageReference Include="Highway.Data" Version="7.0.0-beta2" />
     <PackageReference Include="MediatR" Version="4.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Accounts\Commands\" />
   </ItemGroup>
 
   <ItemGroup>

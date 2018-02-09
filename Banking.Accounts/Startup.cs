@@ -6,8 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 using System.Reflection;
+using CrossCuttingConcerns.Registry;
 using Highway.Data;
-using Highway.Data.Contexts;
 
 namespace Banking.Accounts
 {
@@ -22,15 +22,8 @@ namespace Banking.Accounts
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new Info { Title = "Banking.Accounts", Version = "v1" });
-            });
-
-            services.AddSingleton<IRepository>(new Repository(new InMemoryDataContext()));
-            services.AddMvc();
-
-            services.AddMediatR(Assembly.GetAssembly(typeof(GetAccountHandler)));
+            ApiRegistry.Register(services);
+            ApplicationRegistry.Register(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

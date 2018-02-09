@@ -49,13 +49,18 @@ namespace Banking.Accounts.Controllers
 
                 return await func.Invoke();
             }
+            catch (AuthorizationException)
+            {
+                //TODO Probably should look at potential return messaging?
+                return Forbid();
+            }
             catch (BadRequestException e)
             {
                 return BadRequest(e.Message);
             }
             catch (Exception e)
             {
-                //Production shouldn't give full exception dump, not sure how to do this in Core yet
+                //TODO Production shouldn't give full exception dump, not sure how to do this in Core yet
                 return StatusCode(500, e);
             }
         }

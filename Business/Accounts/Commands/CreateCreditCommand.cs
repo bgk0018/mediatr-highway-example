@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Business.Accounts.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
-namespace Business.Accounts.Models
+namespace Business.Accounts.Commands
 {
     public class CreateCreditCommand : IRequest<TransactionModel>
     {

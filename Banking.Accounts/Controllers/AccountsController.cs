@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Business.Accounts.Commands;
+using Business.Accounts.Commands.CreateTransfer;
 using Business.Accounts.Models;
 using Business.Accounts.Queries;
 using MediatR;
@@ -15,27 +17,33 @@ namespace Banking.Accounts.Controllers
         }
 
         [HttpGet, Route("{id:int}")]
-        public async Task<IActionResult> Get(AccountQuery query)
+        public async Task<IActionResult> Get(GetAccountQuery query)
         {
-            return await Handle<AccountQuery, AccountModel>(query, Ok);
+            return await Handle<GetAccountQuery, AccountModel>(query, Ok);
+        }
+
+        [HttpPost, Route("")]
+        public async Task<IActionResult> Post(CreateAccountCommand command)
+        {
+            return await Handle<CreateAccountCommand, AccountModel>(command, result => Ok(result));
         }
 
         [HttpPost, Route("{id:int}/credits")]
-        public async Task<IActionResult> PostCredit(CreateCreditCommand model)
+        public async Task<IActionResult> PostCredit(CreateCreditCommand command)
         {
-            return await Handle<CreateCreditCommand, TransactionModel>(model, result => Created(new Uri("SomeRoute/Not/Important"), result));
+            return await Handle<CreateCreditCommand, TransactionModel>(command, result => Ok(result));
         }
 
         [HttpPost, Route("transfers")]
-        public async Task<IActionResult> PostTransfer([FromBody]CreateTransferCommand model)
+        public async Task<IActionResult> PostTransfer([FromBody]CreateTransferCommand command)
         {
-            return await Handle<CreateTransferCommand, TransactionModel>(model, result => Created(new Uri("SomeRoute/Not/Important"), result));
+            return await Handle<CreateTransferCommand, TransactionModel>(command, result => Ok(result));
         }
 
         [HttpPost, Route("{id:int}/debits")]
-        public async Task<IActionResult> PostDebits(CreateDebitCommand model)
+        public async Task<IActionResult> PostDebits(CreateDebitCommand command)
         {
-            return await Handle<CreateDebitCommand, TransactionModel>(model, result => Created(new Uri("SomeRoute/Not/Important"), result));
+            return await Handle<CreateDebitCommand, TransactionModel>(command, result => Ok(result));
         }
 
     }

@@ -6,7 +6,7 @@ using Highway.Data;
 using MediatR;
 using Persistence.Accounts.Queries;
 
-namespace Business.Accounts.Commands
+namespace Business.Accounts.Commands.CreateTransfer
 {
     public class CreateTransferHandler : AsyncRequestHandler<CreateTransferCommand, TransactionModel>
     {
@@ -27,20 +27,16 @@ namespace Business.Accounts.Commands
             var receivingAccount = await repo.FindAsync(new GetById(receivingAccountId));
             var sendingAccount = await repo.FindAsync(new GetById(sendingAccountId));
 
-            if (receivingAccount == null) throw new BadRequestException("Receiving account not found");
-
-            if (sendingAccount == null) throw new BadRequestException("Sending account not found");
-
             var transferService = new TransferFundsService();
 
             transferService.Transfer(sendingAccount, receivingAccount, funds);
 
-            if (sendingAccount.Balance.IsNegative) throw new BadRequestException("Insufficent Funds");
+            if (sendingAccount.Balance.IsNegative)
+            {
+                throw new BadRequestException("Insufficent Funds");
+            }
 
-            repo.Context.Update(receivingAccount);
-            repo.Context.Update(sendingAccount);
-
-            await repo.Context.CommitAsync();
+            await repo.UnitOfWork.CommitAsync();
 
             return new TransactionModel();
         }
