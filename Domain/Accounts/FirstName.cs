@@ -18,17 +18,12 @@ namespace Domain.Accounts
                 throw new ArgumentException("Invalid value.", "value");
             }
 
-            this.value = value;
+            this.value = char.ToUpper(value[0]) + value.Substring(1).ToLower();
         }
 
         public static bool IsValid(string candidate)
         {
-            if (string.IsNullOrEmpty(candidate))
-            {
-                return false;
-            }
-
-            return char.ToUpper(candidate[0]) + candidate.Substring(1).ToLower() == candidate;
+            return !string.IsNullOrEmpty(candidate);
         }
 
         public static bool TryParse(string candidate, out FirstName firstName)

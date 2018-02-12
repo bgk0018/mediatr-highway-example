@@ -8,7 +8,7 @@ using Persistence.Accounts.Queries;
 
 namespace Business.Accounts.Commands
 {
-    public class CreateDebitHandler : AsyncRequestHandler<CreateDebitCommand, TransactionModel>
+    public class CreateDebitHandler : AsyncRequestHandler<CreateDebitCommand, FundsModel>
     {
         private readonly IRepository repo;
 
@@ -17,12 +17,17 @@ namespace Business.Accounts.Commands
             this.repo = repo;
         }
 
-        protected override async Task<TransactionModel> HandleCore(CreateDebitCommand request)
+        protected override async Task<FundsModel> HandleCore(CreateDebitCommand request)
         {
             var accountId = new AccountId(request.AccountId);
             var funds = new Funds(request.Funds.Currency, request.Funds.Amount);
 
             var account = await repo.FindAsync(new GetById(accountId));
+
+            if (account == null)
+            {
+                throw new BadRequestException("Account was not found");
+            }
 
             account.Debit(funds);
 
@@ -33,7 +38,7 @@ namespace Business.Accounts.Commands
 
             await repo.UnitOfWork.CommitAsync();
 
-            return new TransactionModel();
+            return request.Funds;
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Business.Accounts.Commands;
-using Business.Accounts.Commands.CreateTransfer;
 using Business.Accounts.Models;
 using Business.Accounts.Queries;
 using MediatR;
@@ -31,19 +30,19 @@ namespace Banking.Accounts.Controllers
         [HttpPost, Route("{id:int}/credits")]
         public async Task<IActionResult> PostCredit(CreateCreditCommand command)
         {
-            return await Handle<CreateCreditCommand, TransactionModel>(command, result => Ok(result));
+            return await Handle<CreateCreditCommand, FundsModel>(command, result => Ok(result));
         }
 
         [HttpPost, Route("transfers")]
         public async Task<IActionResult> PostTransfer([FromBody]CreateTransferCommand command)
         {
-            return await Handle<CreateTransferCommand, TransactionModel>(command, result => Ok(result));
+            return await Handle<CreateTransferCommand, FundsModel>(command, result => Ok(result));
         }
 
         [HttpPost, Route("{id:int}/debits")]
         public async Task<IActionResult> PostDebits(CreateDebitCommand command)
         {
-            return await Handle<CreateDebitCommand, TransactionModel>(command, result => Ok(result));
+            return await Handle<CreateDebitCommand, FundsModel>(command, result => Ok(result));
         }
 
     }

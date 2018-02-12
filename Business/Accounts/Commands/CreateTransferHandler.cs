@@ -6,9 +6,9 @@ using Highway.Data;
 using MediatR;
 using Persistence.Accounts.Queries;
 
-namespace Business.Accounts.Commands.CreateTransfer
+namespace Business.Accounts.Commands
 {
-    public class CreateTransferHandler : AsyncRequestHandler<CreateTransferCommand, TransactionModel>
+    public class CreateTransferHandler : AsyncRequestHandler<CreateTransferCommand, FundsModel>
     {
         private readonly IRepository repo;
 
@@ -17,7 +17,7 @@ namespace Business.Accounts.Commands.CreateTransfer
             this.repo = repo;
         }
 
-        protected override async Task<TransactionModel> HandleCore(CreateTransferCommand request)
+        protected override async Task<FundsModel> HandleCore(CreateTransferCommand request)
         {
             var receivingAccountId = new AccountId(request.ReceivingAccountId);
             var sendingAccountId = new AccountId(request.SendingAccountId);
@@ -26,6 +26,16 @@ namespace Business.Accounts.Commands.CreateTransfer
 
             var receivingAccount = await repo.FindAsync(new GetById(receivingAccountId));
             var sendingAccount = await repo.FindAsync(new GetById(sendingAccountId));
+
+            if (receivingAccount == null)
+            {
+                throw new BadRequestException("Account was not found");
+            }
+
+            if (sendingAccount == null)
+            {
+                throw new BadRequestException("Account was not found");
+            }
 
             var transferService = new TransferFundsService();
 
@@ -38,7 +48,7 @@ namespace Business.Accounts.Commands.CreateTransfer
 
             await repo.UnitOfWork.CommitAsync();
 
-            return new TransactionModel();
+            return request.Funds;
         }
     }
 }

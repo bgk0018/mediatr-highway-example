@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CrossCuttingConcerns.Registry
 {
-    public static class MediatrRegistry
+    internal static class MediatrRegistry
     {
         internal static void Register(IServiceCollection services)
         {
@@ -14,7 +14,7 @@ namespace CrossCuttingConcerns.Registry
             var business = Assembly.GetAssembly(typeof(GetAccountHandler));
 
             //TODO might need
-            //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
             services.AddMediatR(crossCutting, business);
         }

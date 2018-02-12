@@ -1,13 +1,9 @@
-﻿using Business.Accounts.Queries;
-using MediatR;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Swashbuckle.AspNetCore.Swagger;
-using System.Reflection;
-using CrossCuttingConcerns.Registry;
-using Highway.Data;
+using Banking.Accounts.Extensions;
+using CrossCuttingConcerns;
 
 namespace Banking.Accounts
 {
@@ -22,8 +18,9 @@ namespace Banking.Accounts
 
         public void ConfigureServices(IServiceCollection services)
         {
-            ApiRegistry.Register(services);
-            ApplicationRegistry.Register(services);
+            services.AddBankingAccountsApplication()
+                    .AddApi();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

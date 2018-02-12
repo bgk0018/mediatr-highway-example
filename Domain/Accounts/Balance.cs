@@ -26,7 +26,7 @@
 
         public static Balance CreateEmpty()
         {
-            return new Balance(Currency.None, 0);
+            return new Balance(Currency.USD, 0);
         }
     }
 }

@@ -5,9 +5,9 @@ namespace TestingFramework.Categories
     /// <summary>
     ///     A test that involves one more methods of various classes in conjunction.
     /// </summary>
-    internal class IntegrationTestAttribute : CategoryAttribute
+    public class IntegrationTestAttribute : CategoryAttribute
     {
-        internal IntegrationTestAttribute()
+        public IntegrationTestAttribute()
             : base("Integration")
         {
         }

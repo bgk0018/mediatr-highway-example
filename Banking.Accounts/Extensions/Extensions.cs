@@ -1,16 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Banking.Accounts.Extensions
 {
     public static class Extensions
     {
-        public static IEnumerable<object> GetRequiredServices(this IServiceProvider provider, Type serviceType)
+        internal static IServiceCollection AddApi(this IServiceCollection services)
         {
-            return (IEnumerable<object>)provider.GetRequiredService(typeof(IEnumerable<>).MakeGenericType(serviceType));
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "Banking.Accounts", Version = "v1" });
+            });
+
+            services.AddMvc();
+
+            return services;
         }
     }
 }

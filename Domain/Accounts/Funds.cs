@@ -5,14 +5,13 @@ namespace Domain.Accounts
     public class Funds
     {
         private decimal amount;
-        private Currency currency;
 
         public Funds(string currency, decimal amount)
         {
-            Currency result;
-
-            if (!Enum.TryParse(currency, out result))
+            if (!Enum.TryParse(currency, out Currency result))
+            {
                 throw new ArgumentOutOfRangeException(nameof(currency), "Currency was not a valid value");
+            }
 
             Currency = result;
             Amount = amount;
@@ -29,22 +28,15 @@ namespace Domain.Accounts
             get => amount;
             private set
             {
-                if (value < 0) throw new ArgumentOutOfRangeException(nameof(value), "Amount cannot be less than 0");
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value), "Amount cannot be less than 0");
+                }
 
                 amount = value;
             }
         }
 
-        public Currency Currency
-        {
-            get => currency;
-            private set
-            {
-                if (value == Currency.None)
-                    throw new ArgumentOutOfRangeException(nameof(value), "Currency cannot be None");
-
-                currency = value;
-            }
-        }
+        public Currency Currency { get; set; }
     }
 }

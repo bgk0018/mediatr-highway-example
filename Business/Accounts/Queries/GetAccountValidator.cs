@@ -7,14 +7,14 @@ namespace Business.Accounts.Queries
 {
     public class GetAccountValidator : AbstractValidator<GetAccountQuery>
     {
-        protected GetAccountValidator(IReadOnlyRepository repo)
+        public GetAccountValidator(IReadOnlyRepository repo)
         {
-
-            RuleFor(p =>
-                    repo.FindAsync(
-                        new GetById(
-                            new AccountId(p.Id))))
-                .NotNull();
+            RuleFor(p => 
+                repo.Find(
+                    new GetById(
+                        new AccountId(p.Id))))
+                .NotNull()
+                .WithMessage("Account not found with that id.");
         }
     }
 }
