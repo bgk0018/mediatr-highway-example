@@ -24,11 +24,12 @@ namespace Business.Accounts.Commands
 
             var account = await repo.FindAsync(new GetById(accountId));
 
-            if (account == null) throw new BadRequestException("Account not found");
-
             account.Debit(funds);
 
-            if (account.Balance.IsNegative) throw new BadRequestException("Insufficent Funds");
+            if (account.Balance.IsNegative)
+            {
+                throw new BadRequestException("Insufficent Funds");
+            }
 
             await repo.UnitOfWork.CommitAsync();
 

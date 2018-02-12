@@ -2,6 +2,7 @@
 using Business.Accounts.Models;
 using Domain.Accounts;
 using Highway.Data;
+using Mapping;
 using MediatR;
 
 namespace Business.Accounts.Commands
@@ -10,13 +11,16 @@ namespace Business.Accounts.Commands
     {
         private readonly IAccountFactory factory;
         private readonly IWriteOnlyUnitOfWork unitOfWork;
+        private readonly IMapper<Account, AccountModel> mapper;
 
         public CreateAccountHandler(
             IWriteOnlyUnitOfWork unitOfWork,
-            IAccountFactory factory)
+            IAccountFactory factory,
+            IMapper<Account, AccountModel> mapper)
         {
             this.factory = factory;
             this.unitOfWork = unitOfWork;
+            this.mapper = mapper;
         }
 
         protected override async Task<AccountModel> HandleCore(CreateAccountCommand request)
@@ -26,15 +30,7 @@ namespace Business.Accounts.Commands
             unitOfWork.Add(account);
             await unitOfWork.CommitAsync();
 
-            //TODO Mapper
-            return new AccountModel()
-            {
-                AccountId = account.Id,
-                Balance = account.Balance.Amount,
-                Currency = account.Balance.Currency.ToString(),
-                LastName = account.Holder.LastName,
-                FirstName = account.Holder.FirstName
-            };
+            return mapper.Map(account);
         }
     }
 }

@@ -13,6 +13,7 @@ namespace CrossCuttingConcerns.Registry
             FluentValidatorRegistry.Register(services);
             HighwayDataRegistry.Register(services);
             MediatrRegistry.Register(services);
+            AutoMapperRegistry.Register(services);
 
             var business = Assembly.GetAssembly(typeof(GetAccountHandler));
             var domain = Assembly.GetAssembly(typeof(Account));
