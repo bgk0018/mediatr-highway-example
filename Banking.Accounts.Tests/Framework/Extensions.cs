@@ -9,16 +9,26 @@ namespace Banking.Accounts.Tests.Framework
     {
         public static async Task<TResponse> PostAsJsonAsync<TRequest, TResponse>(this HttpClient client, string endpoint, TRequest payload)
         {
-            var result = await client.PostAsync(endpoint, new StringContent(JsonConvert.SerializeObject(payload), Encoding.UTF8, "application/json"));
+            var response = await client.PostAsync(endpoint, new StringContent(JsonConvert.SerializeObject(payload), Encoding.UTF8, "application/json"));
 
-            return JsonConvert.DeserializeObject<TResponse>(await result.Content.ReadAsStringAsync());
+            if (response.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<TResponse>(await response.Content.ReadAsStringAsync());
+            }
+
+            return default(TResponse);
         }
 
-        public static async Task<T> GetAsync<T>(this HttpClient client, string endpoint)
+        public static async Task<TResponse> GetAsync<TResponse>(this HttpClient client, string endpoint)
         {
-            var result = await client.GetStringAsync(endpoint);
+            var response = await client.GetAsync(endpoint);
 
-            return JsonConvert.DeserializeObject<T>(result);
+            if (response.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<TResponse>(await response.Content.ReadAsStringAsync());
+            }
+
+            return default(TResponse);
         }
     }
 }

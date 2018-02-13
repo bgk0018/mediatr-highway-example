@@ -10,14 +10,14 @@ using Business.Tests.Framework.AutoMoq;
 using Domain.Accounts;
 using Highway.Data;
 using Moq;
-using TestingFramework.Categories;
+
 using Xunit;
 
 namespace Business.Tests.Accounts.Commands
 {
     public class CreateTransferHandlerTests
     {
-        [UnitTest]
+        [Trait("Category", "Unit")]
         public class TheHandleMethod
         {
             [AutoMoqData]

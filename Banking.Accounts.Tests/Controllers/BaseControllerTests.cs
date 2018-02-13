@@ -18,6 +18,7 @@ namespace Banking.Accounts.Tests.Controllers
 {
     public class BaseControllerTests
     {
+        [Trait("Category", "Unit")]
         public class TheHandleMethods
         {
             [AutoMoqData]

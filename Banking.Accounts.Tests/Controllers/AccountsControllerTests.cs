@@ -11,14 +11,14 @@ using Business.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
-using TestingFramework.Categories;
+
 using Xunit;
 
 namespace Banking.Accounts.Tests.Controllers
 {
     public class AccountsControllerTests
     {
-        [UnitTest]
+        [Trait("Category", "Unit")]
         public class TheGetMethod
         {
             [AutoMoqData]
@@ -39,7 +39,7 @@ namespace Banking.Accounts.Tests.Controllers
             }
         }
 
-        [UnitTest]
+        [Trait("Category", "Unit")]
         public class ThePostMethod
         {
             [AutoMoqData]
@@ -63,7 +63,7 @@ namespace Banking.Accounts.Tests.Controllers
             }
         }
 
-        [UnitTest]
+        [Trait("Category", "Unit")]
         public class ThePostCreditMethod
         {
             [AutoMoqData]
@@ -84,7 +84,7 @@ namespace Banking.Accounts.Tests.Controllers
             }
         }
 
-        [UnitTest]
+        [Trait("Category", "Unit")]
         public class ThePostDebitMethod
         {
             [AutoMoqData]
@@ -105,7 +105,7 @@ namespace Banking.Accounts.Tests.Controllers
             }
         }
 
-        [UnitTest]
+        [Trait("Category", "Unit")]
         public class ThePostTransferMethod
         {
             [AutoMoqData]

@@ -4,14 +4,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Domain.Accounts;
 using Domain.Tests.Framework.AutoMoq;
-using TestingFramework.Categories;
+
 using Xunit;
 
 namespace Domain.Tests.Accounts
 {
     public class AccountFactoryTests
     {
-        [UnitTest]
+        [Trait("Category", "Unit")]
         public class TheBuildMethod
         {
             [AutoMoqData]

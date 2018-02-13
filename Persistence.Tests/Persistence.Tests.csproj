@@ -17,7 +17,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />
     <ProjectReference Include="..\Persistence\Persistence.csproj" />
-    <ProjectReference Include="..\TestingFramework\TestingFramework.csproj" />
   </ItemGroup>
 
   <ItemGroup>

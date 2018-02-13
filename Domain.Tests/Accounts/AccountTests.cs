@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Domain.Accounts;
 using Domain.Tests.Framework.AutoMoq;
-using TestingFramework.Categories;
+
 using Xunit;
 
 namespace Domain.Tests.Accounts
@@ -53,7 +53,7 @@ namespace Domain.Tests.Accounts
             }
         }
 
-        [UnitTest]
+        [Trait("Category", "Unit")]
         public class TheDebitMethod
         {
             [AutoMoqData]
@@ -66,7 +66,7 @@ namespace Domain.Tests.Accounts
             }
         }
 
-        [UnitTest]
+        [Trait("Category", "Unit")]
         public class TheCreditMethod
         {
             [AutoMoqData]

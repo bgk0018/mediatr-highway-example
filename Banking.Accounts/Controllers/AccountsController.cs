@@ -22,7 +22,7 @@ namespace Banking.Accounts.Controllers
         }
 
         [HttpPost, Route("")]
-        public async Task<IActionResult> Post(CreateAccountCommand command)
+        public async Task<IActionResult> Post([FromBody]CreateAccountCommand command)
         {
             return await Handle<CreateAccountCommand, AccountModel>(command, result => Created($"api/accounts/{result.AccountId}", result));
         }

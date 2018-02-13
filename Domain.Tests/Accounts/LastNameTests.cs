@@ -1,14 +1,14 @@
 ﻿using System;
 using Domain.Accounts;
 using Domain.Tests.Framework.AutoMoq;
-using TestingFramework.Categories;
+
 using Xunit;
 
 namespace Domain.Tests.Accounts
 {
     public class LastNameTests
     {
-        [UnitTest]
+        [Trait("Category", "Unit")]
         public class TheConstructorMethod
         {
             [Fact]
@@ -24,7 +24,7 @@ namespace Domain.Tests.Accounts
             }
         }
 
-        [UnitTest]
+        [Trait("Category", "Unit")]
         public class TheTryParseMethod
         {
             [Fact]
@@ -53,7 +53,7 @@ namespace Domain.Tests.Accounts
             }
         }
 
-        [UnitTest]
+        [Trait("Category", "Unit")]
         public class TheEqualsMethod
         {
             [AutoMoqData]
@@ -80,7 +80,7 @@ namespace Domain.Tests.Accounts
             }
         }
 
-        [UnitTest]
+        [Trait("Category", "Unit")]
         public class TheEqualityOperatorMethod
         {
             [AutoMoqData]
@@ -102,7 +102,7 @@ namespace Domain.Tests.Accounts
             }
         }
 
-        [UnitTest]
+        [Trait("Category", "Unit")]
         public class TheInequalityOperatorMethod
         {
             [AutoMoqData]
@@ -124,7 +124,7 @@ namespace Domain.Tests.Accounts
             }
         }
 
-        [UnitTest]
+        [Trait("Category", "Unit")]
         public class TheHashCodeMethod
         {
             [AutoMoqData]

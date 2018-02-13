@@ -7,14 +7,14 @@ using Highway.Data;
 using Microsoft.VisualStudio.TestPlatform.TestExecutor;
 using Persistence.Accounts.Queries;
 using Persistence.Tests.Framework.AutoMoq;
-using TestingFramework.Categories;
+
 using Xunit;
 
 namespace Persistence.Tests.Accounts.Queries
 {
     public class GetByIdTests
     {
-        [UnitTest]
+        [Trait("Category", "Unit")]
         public class TheConstructorMethod
         {
             [AutoMoqData]

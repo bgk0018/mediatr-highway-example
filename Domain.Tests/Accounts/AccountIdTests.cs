@@ -1,14 +1,14 @@
 ﻿using System;
 using Domain.Accounts;
 using Domain.Tests.Framework.AutoMoq;
-using TestingFramework.Categories;
+
 using Xunit;
 
 namespace Domain.Tests.Accounts
 {
     public class AccountIdTests
     {
-        [UnitTest]
+        [Trait("Category", "Unit")]
         public class TheConstructorMethod
         {
             [Fact]
@@ -24,7 +24,7 @@ namespace Domain.Tests.Accounts
             }
         }
 
-        [UnitTest]
+        [Trait("Category", "Unit")]
         public class TheEqualMethod
         {
             [AutoMoqData]
@@ -60,7 +60,7 @@ namespace Domain.Tests.Accounts
             }
         }
 
-        [UnitTest]
+        [Trait("Category", "Unit")]
         public class TheGetHashCodeMethod
         {
             [AutoMoqData]
@@ -73,7 +73,7 @@ namespace Domain.Tests.Accounts
             }
         }
 
-        [UnitTest]
+        [Trait("Category", "Unit")]
         public class TheEqualityOperatorMethod
         {
             [AutoMoqData]
@@ -95,7 +95,7 @@ namespace Domain.Tests.Accounts
             }
         }
 
-        [UnitTest]
+        [Trait("Category", "Unit")]
         public class TheInequalityOperatorMethod
         {
             [AutoMoqData]

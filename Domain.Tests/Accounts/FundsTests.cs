@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Text;
 using Domain.Accounts;
 using Domain.Tests.Framework.AutoMoq;
-using TestingFramework.Categories;
+
 using Xunit;
 
 namespace Domain.Tests.Accounts
 {
     public class FundsTests
     {
-        [UnitTest]
+        [Trait("Category", "Unit")]
         public class TheConstructorMethod
         {
             [Theory]

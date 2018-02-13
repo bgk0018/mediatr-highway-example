@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
 using AutoFixture;
 using AutoFixture.AutoMoq;
+using Business.Accounts.Models;
 
 namespace Banking.Accounts.Tests.Framework.Customizations
 {
@@ -10,6 +9,7 @@ namespace Banking.Accounts.Tests.Framework.Customizations
     {
         public SuiteCustomizations()
             : base(
+                new FundsModelCustomization(),
                 new TestHostCustomization(),
                 new ControllerCustomization(),
                 new AutoMoqCustomization())
