@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Business.Accounts.Models;
+using Business.Exceptions;
 using Domain.Accounts;
 using Highway.Data;
 using Mapping;
@@ -24,6 +25,11 @@ namespace Business.Accounts.Queries
         protected override async Task<AccountModel> HandleCore(GetAccountQuery request)
         {
             var account = await repo.FindAsync(new GetById(new AccountId(request.Id)));
+
+            if(account == null)
+            {
+                throw new BadRequestException("Account was not found");
+            }
 
             return mapper.Map(account);
         }
