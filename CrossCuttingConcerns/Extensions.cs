@@ -1,10 +1,8 @@
 ﻿using System.Reflection;
-using Business.Accounts.Mappers;
 using Business.Accounts.Models;
 using Business.Accounts.Queries;
 using Domain.Accounts;
 using Highway.Data;
-using Mapping;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using SimpleIdGenerator;
@@ -17,7 +15,6 @@ namespace CrossCuttingConcerns
         {
             services
                 .AddMediator()
-                .AddMapper()
                 .AddPersistence()
                 .AddIdGenerator()
                 .AddDomain();
@@ -44,13 +41,6 @@ namespace CrossCuttingConcerns
             var business = Assembly.GetAssembly(typeof(GetAccountHandler));
 
             services.AddMediatR(business);
-
-            return services;
-        }
-
-        private static IServiceCollection AddMapper(this IServiceCollection services)
-        {
-            services.AddScoped<IMapper<Account, AccountModel>, AccountMapper>();
 
             return services;
         }

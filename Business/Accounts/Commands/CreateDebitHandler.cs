@@ -38,7 +38,11 @@ namespace Business.Accounts.Commands
 
             await repo.UnitOfWork.CommitAsync();
 
-            return request.Funds;
+            return new FundsModel()
+            {
+                Amount = account.Balance.Amount,
+                Currency = account.Balance.Currency.ToString()
+            };
         }
     }
 }

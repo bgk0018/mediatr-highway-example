@@ -19,7 +19,7 @@
             Amount += funds.Amount;
         }
 
-        public void Debit(Funds funds)
+        internal void Debit(Funds funds)
         {
             Amount -= funds.Amount;
         }

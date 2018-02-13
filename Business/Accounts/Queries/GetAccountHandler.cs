@@ -3,7 +3,6 @@ using Business.Accounts.Models;
 using Business.Exceptions;
 using Domain.Accounts;
 using Highway.Data;
-using Mapping;
 using MediatR;
 using Persistence.Accounts.Queries;
 
@@ -12,14 +11,10 @@ namespace Business.Accounts.Queries
     public class GetAccountHandler : AsyncRequestHandler<GetAccountQuery, AccountModel>
     {
         private readonly IReadOnlyRepository repo;
-        private readonly IMapper<Account, AccountModel> mapper;
 
-        public GetAccountHandler(
-            IReadOnlyRepository repo,
-            IMapper<Account, AccountModel> mapper)
+        public GetAccountHandler(IReadOnlyRepository repo)
         {
             this.repo = repo;
-            this.mapper = mapper;
         }
 
         protected override async Task<AccountModel> HandleCore(GetAccountQuery request)
@@ -31,7 +26,14 @@ namespace Business.Accounts.Queries
                 throw new BadRequestException("Account was not found");
             }
 
-            return mapper.Map(account);
+            return new AccountModel()
+            {
+                AccountId = account.Id,
+                Balance = account.Balance.Amount,
+                Currency = account.Balance.Currency.ToString(),
+                LastName = account.Holder.LastName,
+                FirstName = account.Holder.FirstName
+            };
         }
     }
 }

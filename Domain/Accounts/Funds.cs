@@ -37,6 +37,6 @@ namespace Domain.Accounts
             }
         }
 
-        public Currency Currency { get; set; }
+        public Currency Currency { get; }
     }
 }

@@ -10,6 +10,8 @@ namespace Domain.Accounts
 
             if (to == null) throw new ArgumentNullException(nameof(to));
 
+            if (amount == null) throw new ArgumentNullException(nameof(amount));
+
             from.Debit(amount);
             to.Credit(amount);
         }

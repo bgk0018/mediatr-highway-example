@@ -6,7 +6,6 @@ using Banking.Accounts.Tests.Framework.AutoMoq;
 using Business.Accounts.Commands;
 using Business.Accounts.Models;
 using Domain.Accounts;
-using Mapping;
 using Moq;
 using TestingFramework.Categories;
 using Xunit;
