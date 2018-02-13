@@ -52,14 +52,14 @@ namespace Banking.Accounts.Tests.Controllers
             {
                 mediator.Setup(p => p.Send(It.IsAny<IRequest<AccountModel>>(), It.IsAny<CancellationToken>())).ReturnsAsync(model);
 
-                var message = await sut.Post(command) as CreatedResult;
+                if (await sut.Post(command) is CreatedResult message)
+                {
+                    var returnModel = (AccountModel) message.Value;
 
-                var returnModel = (AccountModel) message.Value;
-
-                Assert.True(message != null);
-                Assert.True(message.StatusCode == 201);
-                Assert.True(message.Location == $"api/accounts/{returnModel.AccountId}");
-                Assert.True((AccountModel)message.Value == model);
+                    Assert.True(message.StatusCode == 201);
+                    Assert.True(message.Location == $"api/accounts/{returnModel.AccountId}");
+                    Assert.True((AccountModel)message.Value == model);
+                }
             }
         }
 

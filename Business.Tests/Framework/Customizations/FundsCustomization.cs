@@ -9,11 +9,11 @@ namespace Business.Tests.Framework.Customizations
 {
     public class FundsCustomization : ICustomization
     {
-        private Random rand;
+        private readonly Random rand;
 
         public FundsCustomization()
         {
-            this.rand = new Random();
+            rand = new Random();
         }
 
         public void Customize(IFixture fixture)

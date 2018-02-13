@@ -30,19 +30,19 @@ namespace Banking.Accounts.Controllers
         [HttpPost, Route("{id:int}/credits")]
         public async Task<IActionResult> PostCredit(CreateCreditCommand command)
         {
-            return await Handle<CreateCreditCommand, FundsModel>(command, result => Ok(result));
+            return await Handle<CreateCreditCommand, FundsModel>(command, Ok);
         }
 
         [HttpPost, Route("transfers")]
         public async Task<IActionResult> PostTransfer([FromBody]CreateTransferCommand command)
         {
-            return await Handle<CreateTransferCommand, FundsModel>(command, result => Ok(result));
+            return await Handle<CreateTransferCommand, FundsModel>(command, Ok);
         }
 
         [HttpPost, Route("{id:int}/debits")]
         public async Task<IActionResult> PostDebit(CreateDebitCommand command)
         {
-            return await Handle<CreateDebitCommand, FundsModel>(command, result => Ok(result));
+            return await Handle<CreateDebitCommand, FundsModel>(command, Ok);
         }
 
     }

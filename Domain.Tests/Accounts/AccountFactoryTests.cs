@@ -3,6 +3,7 @@ using Domain.Accounts;
 using Domain.Tests.Framework.AutoMoq;
 using Xunit;
 
+
 namespace Domain.Tests.Accounts
 {
     public class AccountFactoryTests

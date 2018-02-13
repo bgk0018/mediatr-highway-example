@@ -6,11 +6,11 @@ namespace Banking.Accounts.Tests.Framework.Customizations
 {
     public class FundsModelCustomization : ICustomization
     {
-        private Random rand;
+        private readonly Random rand;
 
         public FundsModelCustomization()
         {
-            this.rand = new Random();
+            rand = new Random();
         }
 
         public void Customize(IFixture fixture)
