@@ -10,6 +10,7 @@ namespace Domain.Tests.Accounts
 {
     public class AccountTests
     {
+        [Trait("Category", "Unit")]
         public class TheConstructorMethod
         {
             [AutoMoqData]

@@ -24,7 +24,7 @@ namespace Banking.Accounts.Tests.Integration
 
                 var accountModel = await client.PostAsJsonAsync<CreateAccountCommand, AccountModel>("api/accounts", createAccountCommand);
 
-
+                await client.PostAsJsonAsync<FundsModel, FundsModel>($"api/accounts/{accountModel.AccountId}/credits", createDebitCommand.Funds);
 
                 var fundsModel = await client.PostAsJsonAsync<FundsModel, FundsModel>($"api/accounts/{accountModel.AccountId}/debits", createDebitCommand.Funds);
 
@@ -40,11 +40,13 @@ namespace Banking.Accounts.Tests.Integration
                 CreateDebitCommand createDebitCommand,
                 TestServer server)
             {
-                createDebitCommand.Funds.Amount = -100m;
-
                 var client = server.CreateClient();
 
                 var accountModel = await client.PostAsJsonAsync<CreateAccountCommand, AccountModel>("api/accounts", createAccountCommand);
+
+                await client.PostAsJsonAsync<FundsModel, FundsModel>($"api/accounts/{accountModel.AccountId}/credits", createDebitCommand.Funds);
+
+                createDebitCommand.Funds.Amount = -100m;
 
                 var fundsModel = await client.PostAsJsonAsync<FundsModel, FundsModel>($"api/accounts/{accountModel.AccountId}/debits", createDebitCommand.Funds);
 
@@ -58,11 +60,13 @@ namespace Banking.Accounts.Tests.Integration
                 CreateDebitCommand createDebitCommand,
                 TestServer server)
             {
-                createDebitCommand.Funds.Currency = "Garbage";
-
                 var client = server.CreateClient();
 
                 var accountModel = await client.PostAsJsonAsync<CreateAccountCommand, AccountModel>("api/accounts", createAccountCommand);
+
+                await client.PostAsJsonAsync<FundsModel, FundsModel>($"api/accounts/{accountModel.AccountId}/credits", createDebitCommand.Funds);
+
+                createDebitCommand.Funds.Currency = "Garbage";
 
                 var fundsModel = await client.PostAsJsonAsync<FundsModel, FundsModel>($"api/accounts/{accountModel.AccountId}/debits", createDebitCommand.Funds);
 

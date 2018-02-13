@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 using Domain.Accounts;
 using Domain.Tests.Framework.AutoMoq;
-
 using Xunit;
 
 namespace Domain.Tests.Accounts
@@ -27,6 +23,7 @@ namespace Domain.Tests.Accounts
             }
         }
 
+        [Trait("Category", "Unit")]
         public class TheConstructorMethod
         {
             [Fact]

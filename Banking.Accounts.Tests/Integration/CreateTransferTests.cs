@@ -29,6 +29,8 @@ namespace Banking.Accounts.Tests.Integration
 
                 var funds = await client.PostAsJsonAsync<FundsModel, FundsModel>($"api/accounts/{initialFromAccount.AccountId}/credits", createCreditCommand.Funds);
 
+                initialFromAccount.Balance = funds.Amount;
+
                 var createTransferCommand = new CreateTransferCommand()
                 {
                     Funds = createCreditCommand.Funds,
@@ -41,11 +43,11 @@ namespace Banking.Accounts.Tests.Integration
                 var resultToAccount = await client.GetAsync<AccountModel>($"api/accounts/{initialToAccount.AccountId}");
                 var resultFromAccount = await client.GetAsync<AccountModel>($"api/accounts/{initialFromAccount.AccountId}");
 
-                Assert.True(initialFromAccount.Balance ==
-                            resultFromAccount.Balance - createCreditCommand.Funds.Amount);
+                Assert.True(resultFromAccount.Balance ==
+                            initialFromAccount.Balance - createCreditCommand.Funds.Amount);
 
-                Assert.True(initialToAccount.Balance ==
-                            resultToAccount.Balance + createCreditCommand.Funds.Amount);
+                Assert.True(resultToAccount.Balance ==
+                            initialToAccount.Balance + createCreditCommand.Funds.Amount);
             }
         }
     }

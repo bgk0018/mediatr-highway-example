@@ -11,7 +11,7 @@ namespace Banking.Accounts.Tests.Integration
     public class CreateAccountTests
     {
         public class Integration
-        {
+        { 
             [AutoMoqData]
             [Theory]
             [Trait("Category", "Integration")]
