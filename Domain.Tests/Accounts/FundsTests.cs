@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Business.Tests.Framework.AutoMoq;
 using Domain.Accounts;
+using Domain.Tests.Framework.AutoMoq;
 using TestingFramework.Categories;
 using Xunit;
 
@@ -38,9 +38,7 @@ namespace Domain.Tests.Accounts
 
             [Theory]
             [AutoMoqData]
-            public void Throws_ArgumentOutOfRangeException_On_Negative_Amount(
-                decimal amount,
-                string notValidCurrency)
+            public void Throws_ArgumentOutOfRangeException_On_Negative_Amount(decimal amount)
             {
                 Assert.Throws<ArgumentOutOfRangeException>(() => { new Funds(Currency.USD, -1*amount); });
             }

@@ -9,13 +9,22 @@
     <PackageReference Include="AutoFixture.AutoMoq" Version="4.0.1" />
     <PackageReference Include="AutoFixture.Xunit2" Version="4.0.1" />
     <PackageReference Include="Castle.Core" Version="4.2.1" />
-    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="2.0.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
     <PackageReference Include="xunit" Version="2.3.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
+    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="2.0.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Banking.Accounts\Banking.Accounts.csproj" />
     <ProjectReference Include="..\Business\Business.csproj" />
     <ProjectReference Include="..\TestingFramework\TestingFramework.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="xunit.assert">
+      <HintPath>..\..\..\..\.nuget\packages\xunit.assert\2.3.1\lib\netstandard1.1\xunit.assert.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

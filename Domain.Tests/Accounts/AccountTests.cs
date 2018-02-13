@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Business.Tests.Framework.AutoMoq;
 using Domain.Accounts;
+using Domain.Tests.Framework.AutoMoq;
 using TestingFramework.Categories;
 using Xunit;
 

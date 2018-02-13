@@ -24,7 +24,7 @@ namespace Banking.Accounts.Controllers
         [HttpPost, Route("")]
         public async Task<IActionResult> Post(CreateAccountCommand command)
         {
-            return await Handle<CreateAccountCommand, AccountModel>(command, result => Ok(result));
+            return await Handle<CreateAccountCommand, AccountModel>(command, result => Created($"api/accounts/{result.AccountId}", result));
         }
 
         [HttpPost, Route("{id:int}/credits")]
@@ -40,7 +40,7 @@ namespace Banking.Accounts.Controllers
         }
 
         [HttpPost, Route("{id:int}/debits")]
-        public async Task<IActionResult> PostDebits(CreateDebitCommand command)
+        public async Task<IActionResult> PostDebit(CreateDebitCommand command)
         {
             return await Handle<CreateDebitCommand, FundsModel>(command, result => Ok(result));
         }

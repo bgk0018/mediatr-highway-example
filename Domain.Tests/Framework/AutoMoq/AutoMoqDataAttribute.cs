@@ -1,9 +1,8 @@
 ﻿using AutoFixture;
-using AutoFixture.AutoMoq;
 using AutoFixture.Xunit2;
-using Business.Tests.Framework.Customizations;
+using Domain.Tests.Framework.Customizations;
 
-namespace Business.Tests.Framework.AutoMoq
+namespace Domain.Tests.Framework.AutoMoq
 {
     internal class AutoMoqDataAttribute : AutoDataAttribute
     {

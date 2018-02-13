@@ -1,21 +1,15 @@
 ﻿using AutoFixture;
 using AutoFixture.Xunit2;
+using Banking.Accounts.Tests.Framework.Customizations;
 
 namespace Banking.Accounts.Tests.Framework.AutoMoq
 {
-    internal class AutoMoqDataAttribute : AutoDataAttribute
+    public class AutoMoqDataAttribute : AutoDataAttribute
     {
-        internal AutoMoqDataAttribute()
+        public AutoMoqDataAttribute()
             : base(() =>
             {
-                var fixture = new Fixture();
-
-                //fixture.Customizations.Add(new PropertyTypeOmitter(typeof(DataTextBase)));
-                //fixture.Customize(new SuiteCustomizations());
-
-                ////Some classes we depend on have circular references
-                //fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList().ForEach(b => fixture.Behaviors.Remove(b));
-                //fixture.Behaviors.Add(new OmitOnRecursionBehavior());
+                var fixture = new Fixture().Customize(new SuiteCustomizations());
 
                 return fixture;
             })

@@ -1,15 +1,17 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using Xunit;
+using Xunit.Sdk;
 
 namespace TestingFramework.Categories
 {
     /// <summary>
     ///     A test that involves one more methods of various classes in conjunction.
     /// </summary>
-    public class IntegrationTestAttribute : CategoryAttribute
+    [TraitDiscoverer(IntegrationTestDiscoverer.DiscovererTypeName, DiscovererUtil.AssemblyName)]
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true)]
+    public class IntegrationTestAttribute : Attribute, ITraitAttribute
     {
-        public IntegrationTestAttribute()
-            : base("Integration")
-        {
-        }
+
     }
 }

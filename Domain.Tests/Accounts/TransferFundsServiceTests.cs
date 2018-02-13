@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Business.Tests.Framework.AutoMoq;
 using Domain.Accounts;
+using Domain.Tests.Framework.AutoMoq;
 using TestingFramework.Categories;
 using Xunit;
 
@@ -54,7 +54,7 @@ namespace Domain.Tests.Accounts
 
             [AutoMoqData]
             [Theory]
-            public void Throw_ArgumentNullException_On_Null_From_Account(
+            public void Throw_ArgumentNullException_On_Null_Funds(
                 Account to,
                 Account from,
                 TransferFundsService sut)

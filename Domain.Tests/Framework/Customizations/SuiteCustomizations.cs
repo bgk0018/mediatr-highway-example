@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using AutoFixture;
+﻿using AutoFixture;
 using AutoFixture.AutoMoq;
 
-namespace Business.Tests.Framework.Customizations
+namespace Domain.Tests.Framework.Customizations
 {
     public class SuiteCustomizations : CompositeCustomization
     {

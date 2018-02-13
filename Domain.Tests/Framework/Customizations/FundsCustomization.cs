@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using AutoFixture;
-using Castle.DynamicProxy.Generators.Emitters.SimpleAST;
 using Domain.Accounts;
 
-namespace Business.Tests.Framework.Customizations
+namespace Domain.Tests.Framework.Customizations
 {
     public class FundsCustomization : ICustomization
     {
