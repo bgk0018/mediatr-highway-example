@@ -8,6 +8,7 @@ namespace Business.Accounts.Commands
     public class CreateDebitCommand : IRequest<FundsModel>
     {
         [FromRoute(Name = "id")]
+        [Range(1, int.MaxValue)]
         public int AccountId { get; set; }
 
         [FromBody]

@@ -15,6 +15,12 @@ namespace Banking.Accounts.Controllers
         {
         }
 
+        [HttpDelete, Route("{id:int}")]
+        public async Task<IActionResult> Delete(DeleteAccountCommand command)
+        {
+            return await Handle(command, NoContent);
+        }
+
         [HttpGet, Route("{id:int}")]
         public async Task<IActionResult> Get(GetAccountQuery query)
         {

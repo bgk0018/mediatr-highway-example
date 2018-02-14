@@ -125,5 +125,24 @@ namespace Banking.Accounts.Tests.Controllers
                 Assert.True((FundsModel)message.Value == model);
             }
         }
+
+        [Trait("Category", "Unit")]
+        public class TheDeleteMethod
+        {
+            [AutoMoqData]
+            [Theory]
+            public async Task Returns_NoContent_With_Valid_Request()
+            {
+                var mediator = new Mock<IMediator>();
+
+                var command = new DeleteAccountCommand(){ Id = 1 };
+
+                var sut = new AccountsController(mediator.Object);
+
+                var result = await sut.Delete(command) as NoContentResult;
+
+                Assert.True(result != null);
+            }
+        }
     }
 }
